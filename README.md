@@ -45,14 +45,96 @@ The dataset contains **10,000 entries**, with each row representing a car and it
 ### 1. Data Cleaning & Preparation
 - Loaded the dataset into a pandas DataFrame.
 - Checked for missing values (none found).
-- Converted categorical variables (e.g., `Fuel_Type`, `Transmission`) into numerical format using **one-hot encoding**.
-- Created derived features (e.g., `Car_Age` = 2023 - `Year`).
+```
+# Load the  dataset
+df = pd.read_csv(r"C:\...\Data sets from kaggle\car_price_dataset.csv")
+
+#prints first 5 rows
+print(df.head())
+
+#print information about dataframe
+print(df.info())
+
+# Check if there are any missing values in the DataFrame
+print(df.isnull().values.any())
+
+#print the rows with null values
+print(df.isnull().sum())
+```
 
 ### 2. Exploratory Data Analysis (EDA)
-- **Age Distribution**: Analyzed the distribution of car ages to understand the dataset's composition.
-- **Mileage vs. Price**: Explored the relationship between mileage and car prices.
-- **Fuel Type Analysis**: Compared prices and mileage across different fuel types.
-- **Owner Count Impact**: Investigated how the number of previous owners affects car prices.
+### 1. **Brand Analysis**
+- **Popularity by Brand**: Identified the most common car brands in the dataset using bar charts.
+  - *Insight*: Ford and Audi dominated the dataset, reflecting their market prevalence.
+```
+#group by brand and count the number of cars
+car_popular = df.groupby(["Brand"]).size().reset_index(name="Count")
+
+#sort by count for better visuals
+car_popular = car_popular.sort_values(by="Count", ascending=False)
+
+#print the result
+print(car_popular)
+
+#plotting the bar chart
+plt.figure(figsize=(12, 6))
+plt.bar(car_popular["Brand"], car_popular["Count"], color="skyblue")
+plt.title("Most popular car brands")
+plt.xlabel("Brand")
+plt.ylabel("Number of cars")
+plt.xticks(rotation=45)
+plt.show()
+```
+- **Price by Brand**: Compared average prices across brands using bar charts and box plots.
+  - *Insight*: The domestic brand Chevrolet and the Luxury brand Mercedes had significantly higher average prices compared to budget brands.
+ ```
+#group by brand and calculate the average price
+brand_price = df.groupby("Brand")["Price"].mean().reset_index(name="Average_Price")
+
+#sort by average price for better visualization
+brand_price = brand_price.sort_values(by="Average_Price", ascending=False)
+
+#print the result
+print(brand_price)
+
+#plot a bar chart
+plt.figure(figsize=(12, 6))
+plt.bar(brand_price["Brand"], brand_price["Average_Price"], color = "lightgreen")
+plt.title("Average price by brand")
+plt.xlabel("Brand")
+plt.ylabel("Average Price")
+plt.xticks(rotation=45)
+plt.show()
+
+#using a box plot to show price range for each car
+plt.figure(figsize=(12, 6))
+sns.boxplot(x="Brand", y="Price", data=df, palette="Set3")
+plt.title("Price Distribution by Brand")
+plt.xlabel("Brand")
+plt.ylabel("Price")
+plt.xticks(rotation=45)
+plt.show()
+```
+- **Top Models**: Analyzed the most popular car models within each brand.
+  - *Insight*: Models like Honda Accord and Ford Fiesta were among the top sellers.
+```
+#group by brand and model
+model_popular = df.groupby(["Brand", "Model"]).size().reset_index(name="Count")
+
+#sort by count for better visuals
+model_popular = model_popular.sort_values(by="Count", ascending=False)
+
+#print the result
+print(model_popular.head(10))
+
+#plot the top 10 models
+plt.figure(figsize=(12, 6))
+sns.barplot(x="Count", y="Model", hue="Brand", data=model_popular.head(10), palette="viridis")
+plt.title("Top 10 Most Popular Car Models by Brands")
+plt.xlabel("Number of Cars")
+plt.ylabel("Model")
+plt.show()
+```
 
 ### 3. Machine Learning
 - **Model**: Random Forest Regressor.
