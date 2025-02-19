@@ -462,20 +462,22 @@ print("Predicted Price:", predicted_price[0])
 ```
 
 ---
-
 ## Key Findings
 
 ### 1. **Car Age & Mileage**:
-- Newer cars tend to have **lower mileage** and **higher prices**.
-- Older cars with **higher mileage** are generally **cheaper**.
+
+*   **Negative Correlation:** There's a strong negative correlation between car age and mileage. Newer cars generally have lower mileage, reflecting less time on the road. Conversely, older cars typically accumulate higher mileage.
+*   **Price Impact:** Car age and mileage are both significant factors in determining price. Newer cars with lower mileage command higher prices, while older cars with higher mileage are generally cheaper. This aligns with common market expectations.
 
 ### 2. **Fuel Type**:
-- **Electric cars** are newer, have lower mileage, and are more expensive.
-- **Diesel cars** have larger engines and mid-range prices.
 
-### 3. **Owner Count**:
-- Cars with **fewer owners** tend to be **more expensive**.
-- Cars with **more owners** tend to have **higher mileage**.
+*   **Electric Cars:** Electric cars in the dataset tend to be newer, have lower mileage, and command higher prices. This likely reflects the relative newness of electric vehicle technology and potentially government incentives or higher initial purchase costs.
+*   **Diesel Cars:** Diesel cars are often associated with larger engine sizes and fall within a mid-range price bracket. This might be due to a combination of factors, such as their use for towing or commercial purposes (requiring larger engines) and potentially a balance between fuel efficiency and purchase cost.
+
+###  3. **Owner Count**:
+
+*   **Price Impact:** Cars with fewer previous owners tend to be more expensive. This is likely due to the perception that fewer owners indicate better care and less wear and tear.
+*   **Mileage Association:** Cars with more previous owners tend to have higher mileage. This could be because cars that have been driven more are more likely to change hands more frequently.
 
 ### 4. **Machine Learning Model**:
 - The Random Forest Regressor achieved **96.77% accuracy** (R-squared) with an average error of **$439.39** (MAE).
@@ -483,13 +485,99 @@ print("Predicted Price:", predicted_price[0])
 ---
 
 ## Key Visualizations
-(Visualizations here with brief captions are coming soon.)
+Car Brand Popularity: This chart displays the top 10 most popular car brands based on the number of cars, highlighting Ford's leading position.
+![Most popular car brands bar chart](https://github.com/user-attachments/assets/96134e09-f1da-4df3-a9fa-11f0953a9d03)
+Average Car Prices:  A comparison of average prices for the top 10 most popular car brands, showing relatively similar price points across brands.
+![Averafe price by brand bar chart](https://github.com/user-attachments/assets/d8320418-0e51-4a1b-915c-33802e7b5d1f)
+Top Car Models and Brands: This chart displays the top 10 most popular car models, showing the diversity of brands represented and the relative popularity of each model.
+![Top 10 popular car models by brands bar chart](https://github.com/user-attachments/assets/4dfd7ac9-23be-4966-bfe4-e48c54effbd5)
+Car Price Variability: Box plots showing the distribution of prices for different car brands, highlighting median prices, interquartile ranges, and outliers.
+![Price distribution by brand boxplot chart](https://github.com/user-attachments/assets/288a3da0-31cd-4246-a992-d5c2b440daa8)
+Car Brand Fuel Mix: A visualization of car brand popularity, broken down by fuel type, revealing the dominance of petrol and the brand-specific adoption of diesel, electric, and hybrid options
+![Brand popularity by fuel type stacked bar chart](https://github.com/user-attachments/assets/264967f7-932e-45ad-bf3f-b68f46b06a0f)
+Most Popular Fuel: This chart visualizes the distribution of car counts across different fuel types, highlighting the significant lead of electric vehicles.
+![Most popular fuel type bar chart](https://github.com/user-attachments/assets/2197069f-4735-4b1c-a648-106c0c4efb1b)
+Car Fuel Type Distribution: A pie chart visualizing the proportion of cars for each fuel type, showing a near-even split among electric, diesel, hybrid, and petrol vehicles.
+![Most popular fuel type pie chart](https://github.com/user-attachments/assets/3a603d6a-7416-46c0-8a76-7d01875b6048)
+Transmission Type and Price: A bar chart comparing the average prices of cars with different transmission types, highlighting the higher cost of automatic transmissions.
+![Average price by transmission bar chart](https://github.com/user-attachments/assets/3f2e8013-943a-40ce-94ae-4584f36b01cc)
+Distribution of Car Years: A histogram showing the frequency of cars by year of manufacture, highlighting a higher concentration of newer models.
+![Distribution of car years histogram](https://github.com/user-attachments/assets/010ae40c-f2d0-417c-b174-c14013f408b8)
+Rising Car Prices: A line chart depicting the average car price trend over the years, illustrating the increasing cost of vehicles over time.
+![Average car price by year line chart](https://github.com/user-attachments/assets/64347d0f-bbe6-4810-83bc-54be08a9c962)
+Distribution of Car Mileage: A histogram showing the frequency of cars across different mileage levels, revealing a relatively uniform spread.
+![Distribution of car mileage histogram](https://github.com/user-attachments/assets/436af819-541f-44b5-a706-6d7a4c01d532)
+Mileage Distribution by Year: This chart visualizes the mileage of cars across different years, highlighting the lack of a linear relationship and the wide variation in mileage within each year.
+![Mileage vs Year scatter plot](https://github.com/user-attachments/assets/85cf8a23-13b0-4b50-b6ca-85f0930a446d)
+Relationship Between Mileage and Price: A scatter plot visualizing the inverse relationship between mileage and price, demonstrating the general trend of decreasing car prices with increasing mileage.
+![Mileage vs Price scatterplot](https://github.com/user-attachments/assets/11d03920-819d-447e-a7d2-514214e7c854)
+Mileage as Primary Price Factor: The heatmap confirms that mileage is the strongest factor influencing price, showing a strong negative correlation. While year also has a positive influence on price, its relationship with mileage is negligible.
+![Year, mileage and price corelation heatmap](https://github.com/user-attachments/assets/4239cc94-5a7d-4bb2-b2e7-9724c08f9073)
+Electric Vehicle Premium: The chart reveals a significant price difference based on fuel type, with electric cars commanding a considerably higher average price compared to hybrid, diesel, or petrol options.
+![Average price by fuel](https://github.com/user-attachments/assets/aca60efc-e616-423e-87af-d6de5b06e3a8)
+Distribution of Engine Sizes: A histogram showing the frequency of cars across different engine size ranges, revealing a relatively uniform spread.
+![Distribution of engine size histogram](https://github.com/user-attachments/assets/c48d6e31-a549-4f44-8bfb-c24415d3a8c5)
+Engine Size and Price Correlation: This chart illustrates the relationship between engine size and price, highlighting the general trend of increasing price with engine size, but also the significant influence of other factors on price.
+![Engine size vs price scatter plot](https://github.com/user-attachments/assets/37d135ce-14e4-4d0f-ab80-c16572bb7fcc)
+Diesel and Hybrid Larger Engines: The box plots suggest that Diesel and Hybrid cars tend to have larger engine sizes on average, while Electric vehicles show a narrower range and a lower median engine size. Petrol cars exhibit a wide range but with the lowest median engine size.
+![Engine size by fuel type boxplot chart](https://github.com/user-attachments/assets/211824e6-8b89-4a9c-ab96-b096dca35ab3)
+Mileage as Primary Price Factor: The heatmap confirms that mileage is a stronger factor influencing price than engine size, showing a moderately strong negative correlation. While engine size also has a positive influence on price, its relationship with mileage is negligible.
+![Engine size, price and mileage corelation heatmap](https://github.com/user-attachments/assets/579eb8e5-d1c7-4063-8021-e49185ad701c)
+Distribution of Owner Counts: A histogram showing the frequency of cars associated with different numbers of owners, revealing distinct peaks at each whole number count.
+![Distribution of owner count histogram](https://github.com/user-attachments/assets/e0ca7617-b973-498d-a92d-0eb9b55e6a6e)
+Owner Count Insignificant for Price: The chart demonstrates that the number of previous owners has virtually no impact on the average price of cars in this dataset, suggesting that other factors are much more influential in determining a car's value.
+![Average price by owner count bar chart](https://github.com/user-attachments/assets/7a91aa0e-cbc1-44a5-9cf2-363718fe602b)
+Fuel Type Insignificant for Owner Count: The box plots demonstrate that the type of fuel a car uses has virtually no impact on the number of previous owners it has had. The distribution of owner counts is remarkably consistent across all fuel types, suggesting that other factors are much more influential in determining how many owners a car has had.
+![Owner count by fuel type boxplot chart](https://github.com/user-attachments/assets/933817b4-f4d5-451c-adf5-af00774af7e4)
+Strong Predictive Accuracy: The scatter plot reveals a strong linear relationship between actual and predicted car prices, indicating the model's high accuracy in predicting car values.
+![Actual vs Predicted Car Prices Machine learning visual](https://github.com/user-attachments/assets/94fc1369-9460-4a59-a6cd-91061c32afb2)
 
 ---
 ## Methodology
-- **Data Grouping**: Aggregated data by brand, fuel type, and transmission using `groupby` in pandas.
-- **Visualization**: Used `matplotlib` and `seaborn` for bar charts, scatter plots, and heatmaps.
-- **Statistical Analysis**: Calculated correlation coefficients to quantify relationships between variables.
+
+This project followed a structured approach to explore and model car prices, incorporating data aggregation, visualization, statistical analysis, and machine learning.  The following steps outline the methodology used:
+
+**1. Data Collection and Preparation:**
+*   "The dataset used in this analysis was obtained from Kaggle  and contains information about 10000 cars, including their brand, model, year, engine size, fuel type, transmission, mileage, number of previous owners, and price."
+*   "The data was preprocessed to [mention cleaning steps, e.g., handle missing values, convert data types, remove duplicates, etc.].  Specifically, [describe any specific data cleaning techniques you used]."
+
+**2. Exploratory Data Analysis (EDA):**
+
+*   **Data Grouping and Aggregation:**  Data was aggregated using the `groupby` function in pandas to explore relationships between different variables. This included:
+    *   Grouping by brand to analyze brand popularity and average price.
+    *   Grouping by fuel type to understand fuel type distribution and average price differences.
+    *   Grouping by transmission type to examine price variations based on transmission type.
+    *   Combined groupings (e.g., brand and fuel type) to explore more nuanced relationships.
+*   **Visualization:**  `matplotlib` and `seaborn` libraries were employed to create a variety of visualizations, including:
+    *   **Bar charts:** To compare counts and average prices across different categories (brands, fuel types, transmission types).
+    *   **Histograms:** To visualize the distribution of numerical variables (year, mileage, engine size, owner count).
+    *   **Scatter plots:** To explore relationships between two numerical variables (e.g., mileage vs. price, engine size vs. price).  Scatter plots were also used to visualize actual vs. predicted prices from the machine learning model.
+    *   **Box plots:** To compare the distribution of numerical variables across different categories (e.g., price by brand, engine size by fuel type).
+    *   **Heatmaps:** To visualize correlation matrices and identify relationships between numerical variables.
+    *   **Pie charts:** To show the proportions of different categories (e.g., fuel type distribution).
+*   **Statistical Analysis:**  Correlation coefficients were calculated to quantify the strength and direction of linear relationships between numerical variables.
+
+**3. Machine Learning Model Development:**
+*   **Model Selection:**  A Random Forest Regressor model was chosen for price prediction due to its ability to handle non-linear relationships, its robustness to outliers with high accuracy
+*   **Data Splitting:** The data was split into training (80%) and testing (20%) sets using a random seed for reproducibility.
+*   **Model Training:** The Random Forest Regressor model was trained on the training data.
+*   **Model Evaluation:** The model's performance was evaluated on the test set using the following metrics:
+    *   Mean Absolute Error (MAE)
+    *   R-squared (R²)
+*   **Prediction on New Data:** The trained model was used to predict prices for new, unseen car data.
+
+**4. Tools and Libraries:**
+
+The following tools and libraries were used in this project:
+
+*   Python
+*   pandas
+*   numpy
+*   matplotlib
+*   seaborn
+*   scikit-learn
+
+
 
 
 
