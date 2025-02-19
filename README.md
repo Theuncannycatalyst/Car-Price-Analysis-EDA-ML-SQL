@@ -480,7 +480,14 @@ print("Predicted Price:", predicted_price[0])
 *   **Mileage Association:** Cars with more previous owners tend to have higher mileage. This could be because cars that have been driven more are more likely to change hands more frequently.
 
 ### 4. **Machine Learning Model**:
-- The Random Forest Regressor achieved **96.77% accuracy** (R-squared) with an average error of **$439.39** (MAE).
+*   **Model Selection:**  A Random Forest Regressor model was chosen for price prediction due to its ability to handle non-linear relationships, its robustness to outliers with high accuracy
+*   **Data Splitting:** The data was split into training (80%) and testing (20%) sets using a random seed for reproducibility.
+*   **Model Training:** The Random Forest Regressor model was trained on the training data.
+*   **Model Evaluation:** The model's performance was evaluated on the test set using the following metrics:
+    *   Mean Absolute Error (MAE)
+    *   R-squared (R²)
+*   **Prediction on New Data:** The trained model was used to predict prices for new, unseen car data.
+*   The Random Forest Regressor achieved **96.77% accuracy** (R-squared) with an average error of **$439.39** (MAE).
 
 ---
 
@@ -531,53 +538,3 @@ Fuel Type Insignificant for Owner Count: The box plots demonstrate that the type
 ![Owner count by fuel type boxplot chart](https://github.com/user-attachments/assets/933817b4-f4d5-451c-adf5-af00774af7e4)
 Strong Predictive Accuracy: The scatter plot reveals a strong linear relationship between actual and predicted car prices, indicating the model's high accuracy in predicting car values.
 ![Actual vs Predicted Car Prices Machine learning visual](https://github.com/user-attachments/assets/94fc1369-9460-4a59-a6cd-91061c32afb2)
-
----
-## Methodology
-
-This project followed a structured approach to explore and model car prices, incorporating data aggregation, visualization, statistical analysis, and machine learning.  The following steps outline the methodology used:
-
-**1. Data Collection and Preparation:**
-*   "The dataset used in this analysis was obtained from Kaggle  and contains information about 10000 cars, including their brand, model, year, engine size, fuel type, transmission, mileage, number of previous owners, and price."
-*   "The data was preprocessed to [mention cleaning steps, e.g., handle missing values, convert data types, remove duplicates, etc.].  Specifically, [describe any specific data cleaning techniques you used]."
-
-**2. Exploratory Data Analysis (EDA):**
-
-*   **Data Grouping and Aggregation:**  Data was aggregated using the `groupby` function in pandas to explore relationships between different variables. This included:
-    *   Grouping by brand to analyze brand popularity and average price.
-    *   Grouping by fuel type to understand fuel type distribution and average price differences.
-    *   Grouping by transmission type to examine price variations based on transmission type.
-    *   Combined groupings (e.g., brand and fuel type) to explore more nuanced relationships.
-*   **Visualization:**  `matplotlib` and `seaborn` libraries were employed to create a variety of visualizations, including:
-    *   **Bar charts:** To compare counts and average prices across different categories (brands, fuel types, transmission types).
-    *   **Histograms:** To visualize the distribution of numerical variables (year, mileage, engine size, owner count).
-    *   **Scatter plots:** To explore relationships between two numerical variables (e.g., mileage vs. price, engine size vs. price).  Scatter plots were also used to visualize actual vs. predicted prices from the machine learning model.
-    *   **Box plots:** To compare the distribution of numerical variables across different categories (e.g., price by brand, engine size by fuel type).
-    *   **Heatmaps:** To visualize correlation matrices and identify relationships between numerical variables.
-    *   **Pie charts:** To show the proportions of different categories (e.g., fuel type distribution).
-*   **Statistical Analysis:**  Correlation coefficients were calculated to quantify the strength and direction of linear relationships between numerical variables.
-
-**3. Machine Learning Model Development:**
-*   **Model Selection:**  A Random Forest Regressor model was chosen for price prediction due to its ability to handle non-linear relationships, its robustness to outliers with high accuracy
-*   **Data Splitting:** The data was split into training (80%) and testing (20%) sets using a random seed for reproducibility.
-*   **Model Training:** The Random Forest Regressor model was trained on the training data.
-*   **Model Evaluation:** The model's performance was evaluated on the test set using the following metrics:
-    *   Mean Absolute Error (MAE)
-    *   R-squared (R²)
-*   **Prediction on New Data:** The trained model was used to predict prices for new, unseen car data.
-
-**4. Tools and Libraries:**
-
-The following tools and libraries were used in this project:
-
-*   Python
-*   pandas
-*   numpy
-*   matplotlib
-*   seaborn
-*   scikit-learn
-
-
-
-
-
