@@ -1,0 +1,102 @@
+# Car Price Analysis - SQL Queries
+-- Demonstrates database design, complex analytics, and stored procedures for vehicle pricing trends.
+
+-- =============================================
+-- 1. DATABASE SCHEMA DESIGN
+-- =============================================
+CREATE DATABASE IF NOT EXISTS car_analysis;
+USE car_analysis;
+
+CREATE TABLE vehicles (
+    vehicle_id INT PRIMARY KEY AUTO_INCREMENT,
+    brand VARCHAR(50) NOT NULL,
+    model VARCHAR(50) NOT NULL,
+    year INT NOT NULL CHECK (year BETWEEN 1900 AND 2025),
+    engine_size FLOAT NOT NULL,
+    fuel_type ENUM('Petrol', 'Diesel', 'Hybrid', 'Electric') NOT NULL,
+    transmission ENUM('Manual', 'Automatic', 'CVT') NOT NULL,
+    mileage INT NOT NULL CHECK (mileage >= 0),
+    doors TINYINT NOT NULL CHECK (doors BETWEEN 1 AND 6),
+    owner_count TINYINT NOT NULL CHECK (owner_count >= 0),
+    price DECIMAL(10, 2) NOT NULL CHECK (price >= 0),
+    INDEX idx_brand (brand),
+    INDEX idx_price (price),
+    INDEX idx_fuel_transmission (fuel_type, transmission)
+) ENGINE=InnoDB;
+
+
+-- =============================================
+-- 2. SAMPLE DATA LOADING
+-- =============================================
+-- Simulates production data insertion (10,000 rows)
+INSERT INTO vehicles (brand, model, year, engine_size, fuel_type, transmission, mileage, doors, owner_count, price)
+VALUES 
+    ('Toyota', 'Camry', 2020, 2.5, 'Hybrid', 'Automatic', 15000, 4, 1, 28000),
+    ('Ford', 'F-150', 2022, 3.5, 'Petrol', 'Automatic', 5000, 4, 0, 45000);
+    -- ... (additional rows in actual implementation)
+
+
+-- =============================================
+-- 3. ADVANCED ANALYTICS QUERIES
+-- =============================================
+-- Price analysis by brand and fuel type (Pivot-style)
+SELECT 
+    brand,
+    ROUND(AVG(CASE WHEN fuel_type = 'Petrol' THEN price END), 2) AS avg_petrol_price,
+    ROUND(AVG(CASE WHEN fuel_type = 'Diesel' THEN price END), 2) AS avg_diesel_price,
+    COUNT(*) AS total_cars,
+    ROUND(AVG(price), 2) AS overall_avg_price
+FROM vehicles
+GROUP BY brand
+HAVING COUNT(*) > 100  -- Focus on brands with sufficient inventory
+ORDER BY overall_avg_price DESC;
+
+
+-- Year-over-year price trends using window functions
+WITH yearly_stats AS (
+    SELECT 
+        brand,
+        year,
+        AVG(price) AS avg_price,
+        LAG(AVG(price), 1) OVER (PARTITION BY brand ORDER BY year) AS prev_year_price
+    FROM vehicles
+    GROUP BY brand, year
+)
+SELECT 
+    brand,
+    year,
+    avg_price,
+    prev_year_price,
+    ROUND(((avg_price - prev_year_price) / prev_year_price) * 100, 2) AS yoy_change_pct
+FROM yearly_stats
+WHERE prev_year_price IS NOT NULL
+ORDER BY yoy_change_pct DESC;
+
+
+-- =============================================
+-- 4. STORED PROCEDURE FOR DYNAMIC ANALYSIS
+-- =============================================
+DELIMITER //
+CREATE PROCEDURE GetMarketInsights(
+    IN min_year INT, 
+    IN max_price DECIMAL(10, 2)
+/* 
+Purpose: Analyzes price/mileage trends for vehicles meeting criteria.
+Example: CALL GetMarketInsights(2015, 30000);
+*/
+BEGIN
+    SELECT 
+        transmission,
+        fuel_type,
+        AVG(price) AS avg_price,
+        AVG(mileage) AS avg_mileage,
+        COUNT(*) AS count
+    FROM vehicles
+    WHERE year >= min_year AND price <= max_price
+    GROUP BY transmission, fuel_type
+    ORDER BY avg_price DESC;
+END //
+DELIMITER ;
+
+-- Example execution
+CALL GetMarketInsights(2015, 30000);
