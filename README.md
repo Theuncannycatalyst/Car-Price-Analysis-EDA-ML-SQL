@@ -1,127 +1,43 @@
-# Car Price Analysis And Prediction Project
+# Car Price Prediction and Analysis
 
-## Overview
-This project focuses on analyzing a dataset of **10,000 cars** to understand the factors influencing car prices and building a machine learning model to predict car prices based on features such as brand, model, year, engine size, fuel type, mileage, and more. The project involves **Exploratory Data Analysis (EDA)** and the development of a **Random Forest Regressor** to predict car prices.
+## Overview  
+This project tackles a real-world machine learning problem: predicting car prices based on key features such as brand, model year, mileage, and engine size. The workflow spans data cleaning, exploratory data analysis (EDA), model building, evaluation, and delivering actionable insights using Python and SQL.
 
----
+## Skills Demonstrated  
+- **Python**: Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn  
+- **Data Visualization**: EDA, pattern discovery, correlation mapping  
+- **Machine Learning**: Regression models (Random Forest, Linear Regression, XGBoost)  
+- **SQL**: For querying and slicing the dataset  
+- **Feature Engineering**: Cleaning, encoding, scaling  
+- 🛠**Tools**: Google Colab, GitHub, Jupyter Notebook  
 
-## Dataset
-The dataset contains **10,000 entries**, with each row representing a car and its features. The columns include:
-- **Brand**: The manufacturer of the car (e.g., Toyota, Honda).
-- **Model**: The specific model of the car (e.g., Camry, Civic).
-- **Year**: The year the car was manufactured.
-- **Engine_Size**: The engine size in liters.
-- **Fuel_Type**: The type of fuel the car uses (e.g., Petrol, Diesel, Electric).
-- **Transmission**: The transmission type (e.g., Manual, Automatic).
-- **Mileage**: The total distance the car has been driven (in miles).
-- **Doors**: The number of doors on the car.
-- **Owner_Count**: The number of previous owners.
-- **Price**: The price of the car (target variable).
+## Dataset  
+- 10,000+ used car records (synthetic or anonymized public dataset)  
+- Features include: Brand, Model, Year, Mileage, Engine Size, Transmission, and Price  
+> **Note**: Dataset shared within notebook.  
 
----
+## Exploratory Data Analysis (EDA)  
+- Identified missing values and handled outliers  
+- Explored price trends by brand, year, and mileage  
+- Created visualizations: boxplots, bar charts, scatter plots, correlation heatmaps  
+- Discovered strong negative correlation between mileage and price, and a strong positive correlation with engine size and recent model years  
 
-## Project Goals
-1. **Exploratory Data Analysis (EDA)**:
-   - Understand the distribution of key features (e.g., age, mileage, engine size).
-   - Identify trends and relationships between features and car prices.
-   - Visualize insights to guide decision-making.
+## Machine Learning Modeling  
+**Model Used**: Random Forest Regressor  
+- **MAE (Mean Absolute Error)**: $439.39  
+- **R² Score**: 0.9677 → High prediction accuracy  
+- Compared performance with Linear Regression and XGBoost  
 
-2. **Machine Learning**:
-   - Build a predictive model to estimate car prices based on features.
-   - Evaluate model performance using metrics like **Mean Absolute Error (MAE)** and **R-squared**.
+### Key Steps:  
+- One-hot encoding of categorical variables  
+- Feature scaling and standardization  
+- Train-test split and cross-validation  
+- Performance evaluation using MAE, R² Score, and scatter plots  
 
----
-
-## Tools & Libraries
-- **Python**: Primary programming language.
-- **Pandas**: Data manipulation and cleaning.
-- **Matplotlib & Seaborn**: Data visualization.
-- **Scikit-learn**: Machine learning model development and evaluation.
-
----
-
-## Methodology
-
-### 1. Data Cleaning & Preparation
-- Loaded the dataset into a pandas DataFrame.
-- Checked for missing values (none found).
-
-### 2. Exploratory Data Analysis (EDA)
-### 1. **Brand Analysis**
-- **Popularity by Brand**: Identified the most common car brands in the dataset using bar charts.
-  - *Insight*: Ford and Audi dominated the dataset, reflecting their market prevalence.
-
-- **Price by Brand**: Compared average prices across brands using bar charts and box plots.
-  - *Insight*: The domestic brand Chevrolet and the Luxury brand Mercedes had significantly higher average prices compared to budget brands.
-
-- **Top Models**: Analyzed the most popular car models within each brand.
-  - *Insight*: Models like Honda Accord and Ford Fiesta were among the top sellers.
-
-### 2. **Fuel Type Analysis**
-- **Distribution**: Visualized the proportion of cars by fuel type (Petrol, Diesel, Electric) using pie charts.
-  - *Insight*: Petrol cars were the most common (60%), followed by Diesel (25%) and Electric (15%).
-
-
-- **Price Impact**: Compared average prices across fuel types using bar charts.
-  - *Insight*: Electric cars were the most expensive, likely due to newer technology and lower mileage.
-
-### 3. **Mileage and Age**
-- **Mileage vs. Year**: Explored the relationship between car age and mileage using scatter plots.
-  - *Insight*: Newer cars generally had lower mileage, while older cars showed higher usage.
-- **Price Correlation**: Analyzed how mileage impacts price using scatter plots and heatmaps.
-  - *Insight*: Higher mileage correlated with lower prices, especially for non-luxury brands.
- 
-### 4. **Engine Size**
-- **Distribution**: Visualized the distribution of engine sizes using histograms.
-  - *Insight*: Most cars had engine sizes between 1.5L and 3.0L.
-- **Price Impact**: Linked engine size to price using scatter plots.
-  - *Insight*: Larger engines (e.g., 4.0L+) were associated with higher prices, particularly in luxury brands.
-
-### 5. **Transmission Type**
-- **Price Comparison**: Compared average prices across transmission types (Manual, Automatic, Semi-Automatic).
-  - *Insight*: Automatic cars were more expensive on average, likely due to consumer preference.
-
-### 6. **Owner Count**
-- **Impact on Price**: Analyzed how the number of previous owners affects price using bar charts.
-  - *Insight*: Cars with fewer owners (1-2) commanded higher prices, reflecting buyer preference for lower ownership history.
-
-### 3. Machine Learning
-- **Model**: Random Forest Regressor.
-- **Features**: Brand, Model, Year, Engine_Size, Fuel_Type, Transmission, Mileage, Doors, Owner_Count.
-- **Target Variable**: Price.
-- **Evaluation Metrics**:
-  - **Mean Absolute Error (MAE)**: 439.39
-  - **R-squared**: 0.9677
-
-
----
-## Key Findings
-
-### 1. **Car Age & Mileage**:
-
-*   **Negative Correlation:** There's a strong negative correlation between car age and mileage. Newer cars generally have lower mileage, reflecting less time on the road. Conversely, older cars typically accumulate higher mileage.
-*   **Price Impact:** Car age and mileage are both significant factors in determining price. Newer cars with lower mileage command higher prices, while older cars with higher mileage are generally cheaper. This aligns with common market expectations.
-
-### 2. **Fuel Type**:
-
-*   **Electric Cars:** Electric cars in the dataset tend to be newer, have lower mileage, and command higher prices. This likely reflects the relative newness of electric vehicle technology and potentially government incentives or higher initial purchase costs.
-*   **Diesel Cars:** Diesel cars are often associated with larger engine sizes and fall within a mid-range price bracket. This might be due to a combination of factors, such as their use for towing or commercial purposes (requiring larger engines) and potentially a balance between fuel efficiency and purchase cost.
-
-###  3. **Owner Count**:
-
-*   **Price Impact:** Cars with fewer previous owners tend to be more expensive. This is likely due to the perception that fewer owners indicate better care and less wear and tear.
-*   **Mileage Association:** Cars with more previous owners tend to have higher mileage. This could be because cars that have been driven more are more likely to change hands more frequently.
-
-### 4. **Machine Learning Model**:
-*   **Model Selection:**  A Random Forest Regressor model was chosen for price prediction due to its ability to handle non-linear relationships, its robustness to outliers with high accuracy
-*   **Data Splitting:** The data was split into training (80%) and testing (20%) sets using a random seed for reproducibility.
-*   **Model Training:** The Random Forest Regressor model was trained on the training data.
-*   **Model Evaluation:** The model's performance was evaluated on the test set using the following metrics:
-    *   Mean Absolute Error (MAE)
-    *   R-squared (R²)
-*   **Prediction on New Data:** The trained model was used to predict prices for new, unseen car data.
-*   The Random Forest Regressor achieved **96.77% accuracy** (R-squared) with an average error of **$439.39** (MAE).
-
+## Key Insights  
+- The model predicted prices with **96.77% accuracy** on test data.  
+- Most influential features: **Year, Mileage, and Brand**  
+- Dealerships and resellers can optimize pricing and avoid undervaluation or overpricing using this model.  
 ---
 
 ## Key Visualizations
