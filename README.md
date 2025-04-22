@@ -9,7 +9,7 @@ This project tackles a real-world machine learning problem: predicting car price
 - **Machine Learning**: Regression models (Random Forest, Linear Regression, XGBoost)  
 - **SQL**: For querying and slicing the dataset  
 - **Feature Engineering**: Cleaning, encoding, scaling  
-- 🛠**Tools**: Google Colab, GitHub, Jupyter Notebook  
+- **Tools**: Google Colab, GitHub, Jupyter Notebook  
 
 ## Dataset  
 - 10,000+ used car records (synthetic or anonymized public dataset)  
